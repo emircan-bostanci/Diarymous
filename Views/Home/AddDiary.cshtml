@@ -1,0 +1,16 @@
+@model Diarymous.Models.DiaryManager;
+
+@using (Html.BeginForm(FormMethod.Post))
+{
+    <div>
+        @Html.LabelFor(x => x.title)
+        @Html.TextBoxFor(x => x.title)
+    </div>
+    <div>
+        @Html.LabelFor(x => x.text)
+        @Html.TextBoxFor(x => x.text)
+    </div>
+    @Html.ValidationMessageFor(x => x.title)
+    <button type="submit">Add</button>
+
+}

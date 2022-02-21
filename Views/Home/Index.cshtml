@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Diarymous.Models.Entities.Diary>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<html>
+
+<head>
+    <title>
+        Diarymous
+    </title>
+</head>
+
+<body>
+    <div style=" width:75%;margin-left: auto;margin-right: auto;">
+
+        @foreach (var item in Model)
+        {
+            <div style="float:left;margin: 25;border:1px solid;border-color:black;width: 25%;">
+                <h3>
+                    @item.title
+                </h3>
+                <article>
+                    @item.diaryText
+                    @Html.ActionLink("Read More...", "Diary", "Home", new { id = item.id }, null);
+                </article>
+            </div>
+
+        }
+    </div>
+    <button style="position: fixed; left: 5%; bottom:0">Create Your Own</button>
+</body>
+
+</html>
