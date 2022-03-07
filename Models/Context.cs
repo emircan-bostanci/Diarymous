@@ -13,6 +13,7 @@ namespace Diarymous.Models
         {
 
         }
-        public DbSet<Diary> Diaries { get; set; }
+        public DbSet<Diary> diaries { get; set; }
+        public DbSet<Account> accounts { get; set; }
     }
 }

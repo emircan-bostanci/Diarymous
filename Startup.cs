@@ -1,4 +1,6 @@
 using Diarymous.Models;
+using Diarymous.Models.Interfaces;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -9,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Diarymous
@@ -26,9 +29,19 @@ namespace Diarymous
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<Context>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+            {
+                options.LoginPath = "/Account/Login/";
+                       });
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Login", policybuilder => policybuilder.RequireClaim(ClaimTypes.Name).Build());
+            });
 
-
-            services.AddRazorPages();
+            services.AddRazorPages().AddRazorRuntimeCompilation();
+             services.AddSingleton<IIntervation>(new DiaryIntervation(services.BuildServiceProvider().GetService<Context>()));
+            services.AddSingleton<ClaimsManager>();
+            services.AddSingleton<ICheck>(new LoginState());
             
         }
 
@@ -38,6 +51,7 @@ namespace Diarymous
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                
             }
             else
             {
@@ -49,11 +63,13 @@ namespace Diarymous
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
-
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(name: "default", pattern: "{Controller=Home}/{action=Index}/{id?}");
             });
+
         }
     }
 }

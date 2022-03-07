@@ -19,6 +19,24 @@ namespace Diarymous.Migrations
                 .HasAnnotation("ProductVersion", "5.0.14")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Diarymous.Models.Entities.Account", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("username")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("accounts");
+                });
+
             modelBuilder.Entity("Diarymous.Models.Entities.Diary", b =>
                 {
                     b.Property<int>("id")
@@ -26,8 +44,21 @@ namespace Diarymous.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("authorid")
+                        .HasColumnType("int");
+
                     b.Property<string>("diaryText")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ipAdrr")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("isPrivate")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("likeCount")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("publishDate")
                         .HasColumnType("datetime2");
@@ -38,7 +69,23 @@ namespace Diarymous.Migrations
 
                     b.HasKey("id");
 
-                    b.ToTable("Diaries");
+                    b.HasIndex("authorid");
+
+                    b.ToTable("diaries");
+                });
+
+            modelBuilder.Entity("Diarymous.Models.Entities.Diary", b =>
+                {
+                    b.HasOne("Diarymous.Models.Entities.Account", "author")
+                        .WithMany("diaries")
+                        .HasForeignKey("authorid");
+
+                    b.Navigation("author");
+                });
+
+            modelBuilder.Entity("Diarymous.Models.Entities.Account", b =>
+                {
+                    b.Navigation("diaries");
                 });
 #pragma warning restore 612, 618
         }

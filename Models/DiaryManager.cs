@@ -1,4 +1,5 @@
-﻿using Diarymous.Models.Entities;
+﻿using Diarymous.Models.Attributes;
+using Diarymous.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,12 +13,17 @@ namespace Diarymous.Models
         [DisplayName("Baslik")]
         public string title { get; set; }
         [DisplayName("Metin")]
+        [Word(50)]
         public string text { get; set; }
+        public int likeCount{ get; set; }
+        public string ipAdrr { get; set; }
         public static implicit operator Diary(DiaryManager diaryManager) {
             Diary diary = new Diary();
             diary.title = diaryManager.title;
             diary.diaryText = diaryManager.text;
             diary.publishDate = DateTime.Now;
+            diary.isPrivate = false;
+            diary.ipAdrr = diaryManager.ipAdrr;
             return diary; 
           }
     }

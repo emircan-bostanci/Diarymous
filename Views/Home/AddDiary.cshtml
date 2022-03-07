@@ -1,16 +1,29 @@
-@model Diarymous.Models.DiaryManager;
+﻿@model Diarymous.Models.DiaryManager;
+<html>
+<head>
 
-@using (Html.BeginForm(FormMethod.Post))
-{
-    <div>
-        @Html.LabelFor(x => x.title)
-        @Html.TextBoxFor(x => x.title)
-    </div>
-    <div>
-        @Html.LabelFor(x => x.text)
-        @Html.TextBoxFor(x => x.text)
-    </div>
-    @Html.ValidationMessageFor(x => x.title)
-    <button type="submit">Add</button>
+</head>
+<body>
+    @using (Html.BeginForm(FormMethod.Post))
+    {
 
-}
+    @Html.AntiForgeryToken()
+        <div>
+            @Html.LabelFor(x => x.title)
+            @Html.TextBoxFor(x => x.title)
+        </div>
+        <div>
+            @Html.LabelFor(x => x.text)
+            @Html.TextAreaFor(x => x.text)
+        </div>
+        <!--Validation-->
+        <div>
+
+            @Html.ValidationMessage("Yazı",(string)ViewBag.Message,"text-danger")
+        </div>
+        @Html.ValidationMessageFor(x => x.title)
+        @Html.ValidationMessage("Login", (string)ViewBag.Attention, "text-danger")
+        <button type="submit">Add</button>
+    }
+</body>
+</html>

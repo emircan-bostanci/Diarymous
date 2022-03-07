@@ -1,0 +1,21 @@
+﻿@model Diarymous.Models.AccountManager
+@{
+}
+@Html.ActionLink("Yazı yazmak için üye olmaya gerek yok", "Index", "Home");
+
+<!--Login Area-->
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.LabelFor(user => Model.username)
+    @Html.TextBoxFor(user => Model.username)
+    @Html.LabelFor(user => Model.password)
+    @Html.PasswordFor(user => Model.password)
+        <button type="submit">Giris Yap</button>
+}
+<!--Login Area End-->
+<!--Validation Area-->
+@Html.ValidationMessage("Password", (string)ViewBag.Message,"text-danger") 
+@Html.ValidationMessageFor(username => Model.username)
+@Html.ValidationMessageFor(username => Model.password)
+<!--Validation Area End-->
