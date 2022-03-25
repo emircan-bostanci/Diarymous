@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Diarymous.Models.Entities
@@ -15,7 +16,7 @@ namespace Diarymous.Models.Entities
         public string diaryText { get; set; }
         public bool isPrivate { get; set; }
         public int likeCount{ get; set; }
-        public Account? author { get; set; }
+        public Account author { get; set; }
         public DateTime publishDate { get; set; }
     }
 }

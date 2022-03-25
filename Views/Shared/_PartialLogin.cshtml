@@ -1,0 +1,14 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Diarymous.Models.Interfaces
+@inject ICheck checker
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+    @if (checker.checkState(User) == true)
+    {
+        @Html.ActionLink("Profil","Profile","Profile",null,new {@class="ml-3 mr-3 nav-item" })
+    }
+    else {
+    @Html.ActionLink("Login ", "Login", "Account", null, new { @class = "ml-3 mr-3 nav-item" });
+    @Html.ActionLink("Register","Register","Account",null,new {@class="ml-3 mr-3 nav-item" })
+    }

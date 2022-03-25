@@ -1,0 +1,56 @@
+﻿
+@model Diarymous.Models.Entities.Account
+
+<!--Login Area-->
+@using (Html.BeginForm(FormMethod.Post))
+{
+    <div class="m-4">
+        <div class="w-25 mt-auto mb-auto p-5 rounded input-group position-absolute col-3 d-flex bg-dark  flex-column"
+             style="margin-left: auto; margin-right: auto; margin-bottom: auto;margin-top: auto;left: 0;right:0;">
+
+            <div class="m-2 ">
+
+                <h3 class="text-light">Hoş Geldiniz!😊</h3>
+                <div class="p-3 input-group">
+                    <span class="position-absolute border-0 bg-transparent input-group-text"
+                          style="z-index: 4;"><i class="fa fa-solid fa-user"></i></span>
+                    @Html.TextBoxFor(user => Model.username, new { @class = "form-control", @style = "text-indent: 40px;" })
+
+                </div>
+                @Html.ValidationMessageFor(user => user.username, null, new { @class = "text-danger" })
+                <div class="p-3 input-group">
+                    <span class="position-absolute border-0 bg-transparent input-group-text"
+                          style="z-index: 4;"><i class="fa fa-solid fa-key"></i></span>
+                    @Html.PasswordFor(user => Model.password, new { @class = "form-control", @style = "text-indent: 40px;" })
+                </div>
+                @Html.ValidationMessageFor(user => user.password, null, new { @class = "text-danger" })
+                <div class="ml-auto p-3 mr-auto btn-group justify-content-end">
+                    <button formaction="Register" class="border-0 rounded-start btn btn-light" type="submit">
+                        Üye
+                        Ol
+                    </button>
+                    <button formaction="Login" class="border-0 rounded-start  btn btn-light" type="submit">
+                        Giriş
+                        Yap
+                    </button>
+                </div>
+                <br />
+                <div>
+                    @Html.ValidationMessage("pass", null, new { @class = "text-danger" })
+                </div>
+                @Html.ActionLink("Günlük yazmak için üye olmaya gerek yok", "Index", "Home")
+            </div>
+        </div>
+    </div>
+    @*@Html.AntiForgeryToken()
+        @Html.LabelFor(user => Model.username)
+        @Html.ValidationMessageFor(user => Model.username)
+        @Html.LabelFor(user => Model.password)
+        @Html.PasswordFor(user => Model.password)
+        @Html.ValidationMessageFor(user => Model.password)
+        <button type="submit">Giris Yap</button>
+    *@
+}
+<!--Login Area End-->
+<!--Validation Area-->
+<!--Validation Area End-->

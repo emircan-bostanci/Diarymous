@@ -10,10 +10,7 @@ namespace Diarymous.Models
 {
     public class DiaryManager
     {
-        [DisplayName("Baslik")]
         public string title { get; set; }
-        [DisplayName("Metin")]
-        [Word(50)]
         public string text { get; set; }
         public int likeCount{ get; set; }
         public string ipAdrr { get; set; }

@@ -1,13 +1,19 @@
 ﻿@model Diarymous.Models.DiaryManager;
 <html>
 <head>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+<script>
+    function onSubmit(token) {
+        document.getElementById("diary-form").submit();
+    }
+</script>
 
 </head>
 <body>
-    @using (Html.BeginForm(FormMethod.Post))
+    @using (Html.BeginForm(FormMethod.Post,new {@id="diary-form" }))
     {
 
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
         <div>
             @Html.LabelFor(x => x.title)
             @Html.TextBoxFor(x => x.title)
@@ -19,11 +25,14 @@
         <!--Validation-->
         <div>
 
-            @Html.ValidationMessage("Yazı",(string)ViewBag.Message,"text-danger")
+            @Html.ValidationMessage("Yazı", (string)ViewBag.Message, "text-danger")
         </div>
         @Html.ValidationMessageFor(x => x.title)
         @Html.ValidationMessage("Login", (string)ViewBag.Attention, "text-danger")
-        <button type="submit">Add</button>
+       <button class="g-recaptcha" 
+        data-sitekey="6LeHneEeAAAAAPRhR6KvuVxRbViuo7nXXUBA9VKD"
+        data-callback='onSubmit' 
+        data-action='submit'>Submit</button> 
     }
 </body>
 </html>

@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Diarymous.Models.Attributes
 {
-    public class WordAttribute : ValidationAttribute
+    public class WordAttribute 
     {
-        int minLenght = 0;
+        int minLenght;
         public WordAttribute(int minLenght)
         {
             this.minLenght = minLenght;
         }
-        public override bool IsValid(object value)
+        public bool WordValidation(string value)
         {
             if (value == null)
             {
@@ -27,7 +27,7 @@ namespace Diarymous.Models.Attributes
             }
             return false;
         }
-        int countWord(string value)
+        static int countWord(string value)
         {
             int wordCounter = 0;
             foreach (char letter in value.ToString())

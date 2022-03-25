@@ -1,4 +1,5 @@
 ﻿using Diarymous.Models;
+using Diarymous.Models.Entities;
 using Diarymous.Models.Interfaces;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -14,20 +15,21 @@ namespace Diarymous.Controllers
         private readonly Context _context;
         private readonly ClaimsManager claimsManager;
         private readonly ICheck _check;
-        public AccountController(Context context, ClaimsManager claimsManager, ICheck check)
+        private readonly ICiphering _ciphering;
+        public AccountController(Context context, ClaimsManager claimsManager, ICheck check,ICiphering ciphering)
         {
             _check = check;
             _context = context;
+            _ciphering = ciphering;
             this.claimsManager = claimsManager;
         }
         public IActionResult Index()
         {
-            
             return View();
         }
         public IActionResult Login()
         {
-            if (_check.checkState(HttpContext) == true)
+            if (_check.checkState(HttpContext.User) == true)
             {
                 return RedirectToAction("Home","Index");
             }
@@ -35,55 +37,58 @@ namespace Diarymous.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(AccountManager accountManager)
+        public async Task<IActionResult> Login(Account account)
         {
-            if (_check.checkState(HttpContext) == true)
-            {
+            if (_check.checkState(HttpContext.User) == true) {
                 return RedirectToAction("Home","Index");
             }
-            if (ModelState.IsValid && _check.checkState(HttpContext) == false)
+            if (ModelState.IsValid && _check.checkState(HttpContext.User) == false)
             {
-                if (_context.accounts.FirstOrDefault(user => user.username == accountManager.username && user.password == accountManager.password) == null)
+                if (_context.accounts.FirstOrDefault(user => user.username == account.username && user.password == _ciphering.encrypter(_ciphering.generateSaltedString(account.password,account.username))) == null)
                 {
-                    ViewBag.Message = "Kullanıcı Adı veya Şifre Yanlış";
+                    ModelState.AddModelError("pass","Kullanıcı Adı veya Şifre Yanlış");
                     return View();
                 }
-                await HttpContext.SignInAsync(claimsManager.getClaim(accountManager.username));
+                await HttpContext.SignInAsync(claimsManager.getClaim(account.username));
                 return RedirectToAction("Index", "Home");
             }
             return View();
         }
         public IActionResult Register()
         {
-            if (_check.checkState(HttpContext) == true)
+            if (_check.checkState(HttpContext.User) == true)
             {
                 return RedirectToAction("Home","Index");
             }
-            return View(new AccountManager());
+            return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(AccountManager accountManager)
+        public async Task<IActionResult> Register(Account account)
         {
-            if (_check.checkState(HttpContext) == true)
+            account.password = _ciphering.encrypter(_ciphering.generateSaltedString(account.password,account.username));
+            if (_check.checkState(HttpContext.User) == true)
             {
                 return RedirectToAction("Home","Index");
             }
             if (ModelState.IsValid)
             {
-                if (await _context.accounts.FirstOrDefaultAsync(user => user.username == accountManager.username) == null)
+                if (await _context.accounts.FirstOrDefaultAsync(user => user.username == account.username) == null)
                 {
-                    _context.accounts.Add(accountManager);
+                    _context.accounts.Add(account);
                     _context.SaveChanges();
-                    await HttpContext.SignInAsync(claimsManager.getClaim(accountManager.username));
-                    return RedirectToAction("Profile");
+                 
+                    await HttpContext.SignInAsync(claimsManager.getClaim(account.username));
+                    return RedirectToAction("Profile","Index");
                 }
+                 
+                 ModelState.AddModelError("pass","Böyle bir kullanıcı zaten var!");
             }
             return View();
         }
         public async Task<IActionResult> LogOut()
         {
-            if (_check.checkState(HttpContext) == true)
+            if (_check.checkState(HttpContext.User) == true)
             {
                 await HttpContext.SignOutAsync();
                 return RedirectToAction("Index", "Home");
