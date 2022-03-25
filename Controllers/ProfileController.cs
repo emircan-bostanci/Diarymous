@@ -3,6 +3,7 @@ using Diarymous.Models.Enums;
 using Diarymous.Models.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,17 +26,17 @@ namespace Diarymous.Controllers
             this.claimsManager = claimsManager;
         }
   
-       public IActionResult Profile()
+       public IActionResult Index()
         {
-            if (_check.checkState(HttpContext) == false)
+            if (_check.checkState(HttpContext.User) == false)
             {
                 return RedirectToAction("Index", "Home");
             }
-            return View(_context.accounts.FirstOrDefault(user => user.username == HttpContext.User.Identity.Name));
+            return View(_context.accounts.Include(acc=>acc.diaries).FirstOrDefault(user => user.username == HttpContext.User.Identity.Name));
         }
 
         [HttpPost]
-        public IActionResult Profile(int id,InterventionType interventionType)
+        public IActionResult Index(int id,InterventionType interventionType)
         {
            _intervation.setItem(interventionType, id);
            return View();

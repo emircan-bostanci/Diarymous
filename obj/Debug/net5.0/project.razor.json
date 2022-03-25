@@ -15619,13 +15619,53 @@
   "RootNamespace": "Diarymous",
   "Documents": [
     {
+      "FilePath": "c:\\Users\\Emircan\\source\\repos\\com.app.Diarymous\\Diarymous\\Views\\Shared\\_PartialAccount.cshtml",
+      "TargetPath": "Views\\Shared\\_PartialAccount.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Emircan\\source\\repos\\com.app.Diarymous\\Diarymous\\Views\\Account\\Login.cshtml",
+      "TargetPath": "Views\\Account\\Login.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Emircan\\source\\repos\\com.app.Diarymous\\Diarymous\\Views\\Home\\AddDiary.cshtml",
       "TargetPath": "Views\\Home\\AddDiary.cshtml",
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\Emircan\\source\\repos\\com.app.Diarymous\\Diarymous\\Views\\Shared\\_PartialContent.cshtml",
+      "TargetPath": "Views\\Shared\\_PartialContent.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Emircan\\source\\repos\\com.app.Diarymous\\Diarymous\\Views\\_Layout.cshtml",
+      "TargetPath": "Views\\_Layout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Emircan\\source\\repos\\com.app.Diarymous\\Diarymous\\Views\\Profile\\Index.cshtml",
+      "TargetPath": "Views\\Profile\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Emircan\\source\\repos\\com.app.Diarymous\\Diarymous\\Views\\Home\\Diary.cshtml",
+      "TargetPath": "Views\\Home\\Diary.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Emircan\\source\\repos\\com.app.Diarymous\\Diarymous\\Views\\Home\\Index.cshtml",
       "TargetPath": "Views\\Home\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Emircan\\source\\repos\\com.app.Diarymous\\Diarymous\\Views\\Shared\\_PartialLogin.cshtml",
+      "TargetPath": "Views\\Shared\\_PartialLogin.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Emircan\\source\\repos\\com.app.Diarymous\\Diarymous\\Views\\Account\\Register.cshtml",
+      "TargetPath": "Views\\Account\\Register.cshtml",
       "FileKind": "mvc"
     }
   ],

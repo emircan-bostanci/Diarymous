@@ -44,6 +44,9 @@ namespace Diarymous.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("Accountid")
+                        .HasColumnType("int");
+
                     b.Property<int?>("authorid")
                         .HasColumnType("int");
 
@@ -69,6 +72,8 @@ namespace Diarymous.Migrations
 
                     b.HasKey("id");
 
+                    b.HasIndex("Accountid");
+
                     b.HasIndex("authorid");
 
                     b.ToTable("diaries");
@@ -76,6 +81,10 @@ namespace Diarymous.Migrations
 
             modelBuilder.Entity("Diarymous.Models.Entities.Diary", b =>
                 {
+                    b.HasOne("Diarymous.Models.Entities.Account", null)
+                        .WithMany("likedPosts")
+                        .HasForeignKey("Accountid");
+
                     b.HasOne("Diarymous.Models.Entities.Account", "author")
                         .WithMany("diaries")
                         .HasForeignKey("authorid");
@@ -86,6 +95,8 @@ namespace Diarymous.Migrations
             modelBuilder.Entity("Diarymous.Models.Entities.Account", b =>
                 {
                     b.Navigation("diaries");
+
+                    b.Navigation("likedPosts");
                 });
 #pragma warning restore 612, 618
         }

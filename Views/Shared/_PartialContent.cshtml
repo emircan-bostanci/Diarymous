@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Diarymous.Models.Entities.Diary>
+@{ 
+    int range = 275;
+}
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="diary rounded col-md-12 border">
+            <h3 class="diary-title"> @item.title</h3>
+            <h5 class="diary-date">
+                <i class="fa fa-clock-o" aria-hidden="true"> </i>
+                <span>
+                    @item.publishDate
+                </span>
+            </h5>
+            <hr class="diary-hr">
+            <p class="diary-description">
+                @((item.diaryText != null && item.diaryText.Length > range) ? item.diaryText.Substring(0, range) : item.diaryText)
+                <span class="read-more">
+                    @Html.ActionLink("Devamını Oku...", "Diary", "Home", new { id = item.id }, new {@class="diary-item" })
+                </span>
+            </p>
+
+            <hr class="diary-hr">
+            <div class="d-flex justify-content-between">
+                <h4 class="diary-user">
+                    <i class="fa fa-user-o" aria-hidden="true"></i> @((item.author != null) ? item.author.username : "Anonim Kullanıcı" )
+                </h4>
+                <div>
+                    <h4 class="diary-user mr-4">
+                        <i class="fa  fa-solid fa-heart" aria-hidden="true"></i><span class="ml-1">@item.likeCount</span>
+                    </h4>
+                    <h4 class="diary-share">
+                        <i class="fa fa-share-alt share-icon"
+                           aria-hidden="true"></i><span onclick="copyToClipboard(@Url.Action("Diary", "Home", new { id = item.id }))" class="ml-1">Paylaş</span>
+                    </h4>
+                </div>
+            </div>
+        </div>
+    }
+</div>

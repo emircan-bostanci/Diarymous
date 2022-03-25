@@ -11,7 +11,13 @@ namespace Diarymous.Models
     {
         public Context(DbContextOptions<Context> options) : base(options)
         {
-
+            
+        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Account>().HasMany(acc => acc.diaries).WithOne(diary => diary.author);
+            modelBuilder.Entity<Account>().HasMany(acc => acc.likedPosts);
+            base.OnModelCreating(modelBuilder);
         }
         public DbSet<Diary> diaries { get; set; }
         public DbSet<Account> accounts { get; set; }
