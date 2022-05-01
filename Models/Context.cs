@@ -11,7 +11,7 @@ namespace Diarymous.Models
     {
         public Context(DbContextOptions<Context> options) : base(options)
         {
-            
+            Database.EnsureCreated();            
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -19,6 +19,7 @@ namespace Diarymous.Models
             modelBuilder.Entity<Account>().HasMany(acc => acc.likedPosts);
             base.OnModelCreating(modelBuilder);
         }
+        public DbSet<Suggestion> suggestions {get;set;}
         public DbSet<Diary> diaries { get; set; }
         public DbSet<Account> accounts { get; set; }
     }

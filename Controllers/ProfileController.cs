@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace Diarymous.Controllers
 {
+    /*
     [Authorize]
     public class ProfileController : Controller
     {
@@ -38,8 +39,9 @@ namespace Diarymous.Controllers
         [HttpPost]
         public IActionResult Index(int id,InterventionType interventionType)
         {
-           _intervation.setItem(interventionType, id);
+ 					// TODO : Add this when update 
+					// _intervation.setItem(interventionType, id);
            return View();
         }
-    }
+    }>*/
 }

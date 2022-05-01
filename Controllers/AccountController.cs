@@ -9,10 +9,10 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace Diarymous.Controllers
-{
+{/*
+
     public class AccountController : Controller
-    {
-        private readonly Context _context;
+    {        private readonly Context _context;
         private readonly ClaimsManager claimsManager;
         private readonly ICheck _check;
         private readonly ICiphering _ciphering;
@@ -95,5 +95,5 @@ namespace Diarymous.Controllers
             }
             return RedirectToAction("Login");
         }
-    }
+    }*/
 }

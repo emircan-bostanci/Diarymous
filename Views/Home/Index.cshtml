@@ -5,21 +5,22 @@
 <main>
     <div class="container-fluid">
         <div class="d-flex">
-            <div class="col-md-10">
+            <div class="col-md-12">
 
+                <div class="m-4">
+                    <h1 class="h4">Yazılmış Günlükler</h1>
+                </div>
                 @*Html.ActionLink("Günlük Yaz", "AddDiary", "Home", null, new { @class = " text ", @style = "text-decoration:none" })*@
                 <div class="container content diaries">
                     <div class="col-md-12">
                         <div class="row ">
                             <div class="col-md-10">
                                 <div class="">
-                                    <input class=" active-border-0 form-control border-0" placeholder="Ara" style="box-shadow:none!important;text-indent:25px;" />
-                                    <i class="fa fa-search position-absolute" style="top:10px;left:30px"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    @await Html.PartialAsync("_PartialContent")
+                   @await Html.PartialAsync("_PartialContent")
                 </div>
             </div>
             <div class="row left-bar h-100">
@@ -27,29 +28,22 @@
                 <div class="content row">
                     <div class="position-relative">
                         <div class="profile-items mt-2">
-                            @Html.ActionLink((string)ViewBag.ProfileName, "Index", "Profile")
+                            @{//Html.ActionLink((string)ViewBag.ProfileName, "Index", "Profile")
+}
                         </div>
                         <div class="col-12 mt-2">
                             <div>
-                                <div class="">
-                                    <i class="fa fa-plus"></i><span>Günlük Yaz</span>
-                                </div>
+
                             </div>
                         </div>
                     </div>
 
-
                 </div>
                 <div class="row col-12">
-                    <div><span>En Çok Beğenilen Gönderiler</span></div>
+								<!-- <div><span>En Çok Beğenilen Gönderiler</span></div>--!>
                 </div>
 
             </div>
         </div>
     </div>
 </main>
-<script>
-    function copyToClipboard(var value) {
-        windows.prompt("URL")
-    }
-</script>

@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace Diarymous.Controllers
 {
     public class HomeController :Controller
-    {    
+    {
         private readonly Context _context;
         private readonly ICheck _check;
         private readonly LikeManager _likeManager;
@@ -67,9 +67,9 @@ namespace Diarymous.Controllers
                 var isLiked = _likeManager.likeChecker(true, diary, user);
                 _likeManager.like(isLiked,_context , diary, user);
            }
-            
+
             return View(diary);
-        } 
+        }
         public IActionResult AddDiary()
         {
             if(_check.checkState(HttpContext.User)== false)
@@ -97,6 +97,20 @@ namespace Diarymous.Controllers
             ViewBag.Message = "Yazı En Az 50 Cümleden Oluşmalı";
             return View();
         }
-      
+        public IActionResult Suggestions(){
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Suggestions(Suggestion suggestion){
+            if(ModelState.IsValid){
+                suggestion.suggestionDate = DateTime.Now;
+                _context.suggestions.Add(suggestion);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+                
+            }
+            return View();
+        }
     }
 }

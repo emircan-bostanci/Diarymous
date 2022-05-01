@@ -1,0 +1,21 @@
+.diary-input{
+  border:none !important;
+}
+.diary-input:focus{
+  border:none !important;
+  box-shadow:none !important;
+  background-color:#eaeaea;
+}
+.diary-input:focus + .guide-span{
+  width:100%;
+  background-color:red;
+}
+.guide-span{
+  transition:width 1s;
+  width:125px;
+  height:1px;
+  background-color:red;
+}
+textarea{
+  height:290px !important;
+}

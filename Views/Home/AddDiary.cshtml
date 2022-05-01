@@ -1,38 +1,44 @@
-﻿@model Diarymous.Models.DiaryManager;
-<html>
-<head>
-    <script src="https://www.google.com/recaptcha/api.js"></script>
+
+@model Diarymous.Models.DiaryManager;
+@{ 
+  Layout = "../_Layout.cshtml"; 
+}
+<link rel="stylesheet" href="/css/add.css">
+</link>
+<script src="https://www.google.com/recaptcha/api.js"></script>
 <script>
-    function onSubmit(token) {
-        document.getElementById("diary-form").submit();
-    }
+  function onSubmit(token) {
+    document.getElementById("diary-form").submit();
+  }
 </script>
-
-</head>
-<body>
-    @using (Html.BeginForm(FormMethod.Post,new {@id="diary-form" }))
-    {
-
-        @Html.AntiForgeryToken()
-        <div>
-            @Html.LabelFor(x => x.title)
-            @Html.TextBoxFor(x => x.title)
-        </div>
-        <div>
-            @Html.LabelFor(x => x.text)
-            @Html.TextAreaFor(x => x.text)
-        </div>
-        <!--Validation-->
-        <div>
-
-            @Html.ValidationMessage("Yazı", (string)ViewBag.Message, "text-danger")
-        </div>
-        @Html.ValidationMessageFor(x => x.title)
-        @Html.ValidationMessage("Login", (string)ViewBag.Attention, "text-danger")
-       <button class="g-recaptcha" 
-        data-sitekey="6LeHneEeAAAAAPRhR6KvuVxRbViuo7nXXUBA9VKD"
-        data-callback='onSubmit' 
-        data-action='submit'>Submit</button> 
-    }
-</body>
-</html>
+<main>
+  <div class='container'>
+    <div class="mt-5 mb-5">
+      <a href='@Url.Action("Index")'>
+        <i class="fa fa-solid fa-caret-left"></i>
+        <span> Ana Sayfaya Dön </span>
+      </a>
+    </div>
+    <div class='col-12 justify-content-center'> 
+      @using (Html.BeginForm(FormMethod.Post,new {@id="diary-form" })) { 
+      @Html.AntiForgeryToken() 
+      <div class="mb-3 row"> 
+        @Html.TextBoxFor(x => x.title,new {placeholder="Başlık", @class="w-100 input form-control diary-input"}) 
+        <span class="guide-span" />
+      </div>
+      <div class="row"> 
+        @Html.TextAreaFor(x => x.text,new {placeholder="İçerik", @class="w-100 input form-control diary-input"})
+        <span class="guide-span" />
+      </div>
+      <!--Validation-->
+      <div> 
+        @Html.ValidationMessage("Yazı", (string)ViewBag.Message, "text-danger") 
+      </div>
+      //Html.ValidationMessage("Login", (string)ViewBag.Attention, "text-danger") 
+      <button class="m-3 btn g-recaptcha" data-sitekey="6LeHneEeAAAAAPRhR6KvuVxRbViuo7nXXUBA9VKD" data-callback='onSubmit' data-action='submit'> 
+        Submit 
+      </button>
+      }
+    </div>
+  </div>
+</main>

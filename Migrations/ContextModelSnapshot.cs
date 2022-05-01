@@ -79,6 +79,24 @@ namespace Diarymous.Migrations
                     b.ToTable("diaries");
                 });
 
+            modelBuilder.Entity("Diarymous.Models.Entities.Suggestion", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("suggestionDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("suggestionText")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("suggestions");
+                });
+
             modelBuilder.Entity("Diarymous.Models.Entities.Diary", b =>
                 {
                     b.HasOne("Diarymous.Models.Entities.Account", null)

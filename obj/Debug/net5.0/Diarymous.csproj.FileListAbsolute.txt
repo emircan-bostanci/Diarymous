@@ -450,3 +450,13 @@ C:\Users\Emircan\source\repos\com.app.Diarymous\Diarymous\bin\Debug\net5.0\WebMa
 C:\Users\Emircan\source\repos\com.app.Diarymous\Diarymous\bin\Debug\net5.0\Microsoft.Web.Infrastructure.dll
 C:\Users\Emircan\source\repos\com.app.Diarymous\Diarymous\bin\Debug\net5.0\Microsoft.VisualStudio.Web.BrowserLink.dll
 C:\Users\Emircan\source\repos\com.app.Diarymous\Diarymous\obj\Debug\net5.0\Razor\Views\Profile\Index.cshtml.g.cs
+C:\Users\Emircan\source\repos\com.app.Diarymous\Diarymous\obj\Debug\net5.0\Razor\Views\Home\Suggestions.cshtml.g.cs
+C:\Users\Emircan\source\repos\com.app.Diarymous\Diarymous\bin\Debug\net5.0\BouncyCastle.Crypto.dll
+C:\Users\Emircan\source\repos\com.app.Diarymous\Diarymous\bin\Debug\net5.0\Google.Protobuf.dll
+C:\Users\Emircan\source\repos\com.app.Diarymous\Diarymous\bin\Debug\net5.0\K4os.Compression.LZ4.dll
+C:\Users\Emircan\source\repos\com.app.Diarymous\Diarymous\bin\Debug\net5.0\K4os.Compression.LZ4.Streams.dll
+C:\Users\Emircan\source\repos\com.app.Diarymous\Diarymous\bin\Debug\net5.0\K4os.Hash.xxHash.dll
+C:\Users\Emircan\source\repos\com.app.Diarymous\Diarymous\bin\Debug\net5.0\MySql.Data.dll
+C:\Users\Emircan\source\repos\com.app.Diarymous\Diarymous\bin\Debug\net5.0\Ubiety.Dns.Core.dll
+C:\Users\Emircan\source\repos\com.app.Diarymous\Diarymous\bin\Debug\net5.0\ZstdNet.dll
+C:\Users\Emircan\source\repos\com.app.Diarymous\Diarymous\bin\Debug\net5.0\MySql.EntityFrameworkCore.dll

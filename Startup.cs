@@ -34,7 +34,7 @@ namespace Diarymous
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews().AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<Startup>());
-            services.AddDbContext<Context>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
+            services.AddDbContext<Context>(options => options.UseMySQL(Configuration.GetConnectionString("Default")));
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
             {
                 options.LoginPath = "/Account/Login/";
@@ -49,7 +49,6 @@ namespace Diarymous
             services.AddSingleton<ClaimsManager>();
             services.AddSingleton<LikeManager>();
             services.AddSingleton<ICheck>(new LoginState());
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

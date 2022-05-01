@@ -1,0 +1,35 @@
+﻿@font-face{
+    font-family:Satisfy;
+    src:url("/font/Satisfy-Regular.ttf")
+}
+.home-icon{
+    font-family:Satisfy;
+    font-size:35px;
+}
+
+body {
+    background-color: #F3CCC7;
+}
+
+.title {
+    font-size: 22px;
+    color: #191919;
+    font-family: 'Segoe UI Variable Small';
+    text-transform: uppercase;
+}
+
+.text {
+    font-size: 18px;
+    color: #707070;
+    font-family: 'Segoe UI Variable Small'
+}
+
+.custom-card {
+    border: 0.4px solid #707070;
+    margin-top: 15px;
+    background-color: #FFFFFF;
+    border-radius: 18px;
+}
+
+@media screen and (max-height:800){
+}
